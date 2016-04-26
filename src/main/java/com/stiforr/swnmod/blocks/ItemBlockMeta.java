@@ -1,8 +1,10 @@
 package com.stiforr.swnmod.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 public class ItemBlockMeta extends ItemBlock {
 
@@ -19,8 +21,9 @@ public class ItemBlockMeta extends ItemBlock {
         return damage;
     }
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + "." + ((IMetaBlockName)this.block).getSpecialName(stack);
-    }
+	@Override
+	public String getItemStackDisplayName(ItemStack stack)
+	{
+		return String.format("%s %s", StatCollector.translateToLocal("color." + EnumType.values()[stack.getMetadata()]), StatCollector.translateToLocal("tile.stonebrick.name"));
+	}
 }
